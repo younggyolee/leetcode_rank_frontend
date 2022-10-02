@@ -19,6 +19,12 @@ export default function Home() {
     setData(fetched);
   };
 
+  const updateUserRating = async (username) => {
+    const url = `${API_URL}/user/${username}/rating/`;
+    const response = await fetch(url, { method: 'PUT' });
+    return response.status === 200;
+  };
+
   const handleUsernameChange = async (e) => {
     setUsername(e.target.value);
   };
@@ -30,15 +36,17 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `${API_URL}/user/`;
+    const targetUsername = username;
     const response = await fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
-        username,
+        username: targetUsername,
         password,
       })
     });
     if (response.status === 200) {
+      await updateUserRating(targetUsername);
       setUsername('');
       setPassword('');
       getData();
@@ -93,7 +101,7 @@ export default function Home() {
               data.map(row => <tr key={row.username}>
                 <td><a href={`https://leetcode.com/${row.username}`} target="_blank">{row.username}</a></td>
                 <td>{Math.round(row.rating)}</td>
-                <td>{row.top_percentage.toFixed(2)}%</td>
+                <td>{(row.top_percentage || 0).toFixed(2)}%</td>
                 <td><button onClick={() => handleDelete(row.username)}>x</button></td>
               </tr>)
             }
