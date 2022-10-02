@@ -1,5 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
+import styles from './index.module.css';
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -76,18 +78,21 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <Head>
         <title>Leetcode Ranking</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="title">
-          Leetcode Ranking
+        <h1 className={styles.title}>
+        <Image src="/LeetCode_logo_black.png" alt="Leetcode logo" width="64" height="64" /><br/>
+        Vanilla Coding Leaderboard
         </h1>
 
-        <table>
+        <span className={styles.updateDesc}>(Updated every day)</span>
+
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>username</th>
@@ -108,9 +113,10 @@ export default function Home() {
           </tbody>
         </table>
 
+        <hr/>
         <div>
-          <h2>Add a user</h2>
           <form onSubmit={handleSubmit}>
+            <h3>Add a user</h3>
             <div>
               <label>
                 Username:

@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.table {
+  font-size: 20px;
+}
+
+.table td {
+  padding: 20px;
+}
