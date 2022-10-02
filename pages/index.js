@@ -90,7 +90,7 @@ export default function Home() {
         Vanilla Coding Leaderboard
         </h1>
 
-        <span className={styles.updateDesc}>(Updated every day)</span>
+        <span className={styles.updateDesc}>(Updated every day 23:00 UTC)</span>
 
         <table className={styles.table}>
           <thead>
