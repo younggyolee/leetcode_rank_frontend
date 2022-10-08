@@ -15,14 +15,14 @@ export default function Home() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const getData = async () => {
-    const url = `${API_URL}/rating/`;
+    const url = `${API_URL}/rating`;
     const response = await fetch(url);
     const fetched = await response.json();
     setData(fetched);
   };
 
   const updateUserRating = async (username) => {
-    const url = `${API_URL}/user/${username}/rating/`;
+    const url = `${API_URL}/user/${username}/rating`;
     const response = await fetch(url, { method: 'PUT' });
     return response.status === 200;
   };
@@ -37,7 +37,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `${API_URL}/user/`;
+    const url = `${API_URL}/user`;
     const targetUsername = username;
     const response = await fetch(url, {
       method: 'POST',
@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   const handleDelete = async (usernameToDelete) => {
-    const url = `${API_URL}/user/`;
+    const url = `${API_URL}/user`;
     const passwordInput = prompt('Please type in password');
     const response = await fetch(url, {
       method: 'DELETE',
@@ -80,7 +80,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Leetcode Ranking</title>
+        <title>Sort by Rating - Leetcode Leaderboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
